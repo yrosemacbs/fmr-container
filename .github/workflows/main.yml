@@ -8,7 +8,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: fmr
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build_and_push:
