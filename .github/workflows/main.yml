@@ -5,6 +5,11 @@ on:
         description: 'FMR version'
         required: true
         type: string
+      tomcatImage:
+        description: 'Tomcat container image'
+        required: true
+        type: string
+        default: 'tomcat:9.0.97-jdk21-corretto-al2'
 
 env:
   REGISTRY: ghcr.io
@@ -39,6 +44,7 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=${{ inputs.fmrVersion }}
+            type=raw,value=${{ inputs.fmrVersion }}-${{ inputs.tomcatImage }}
           
           
       - name: Build and push container image
@@ -48,6 +54,7 @@ jobs:
           push: true
           build-args: |
             "FMR_VERSION=${{ inputs.fmrVersion }}"
+            "TOMCAT_IMAGE"=${{ inputs.tomcatImage }}
           context: .
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
