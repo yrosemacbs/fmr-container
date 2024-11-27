@@ -26,6 +26,6 @@ jobs:
         with:
           push: true
           tags: |
-            ghcr.io/yrosemacbs/fmr:${{ fmrVersion }}
+            ghcr.io/yrosemacbs/fmr:${{ inputs.fmrVersion }}
           build-args: |
-            "FMR_VERSION=${{ fmrVersion }}"
+            "FMR_VERSION=${{ inputs.fmrVersion }}"
