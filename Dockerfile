@@ -6,4 +6,4 @@ FROM ${BASE_REGISTRY}/${TOMCAT_IMAGE}
 
 RUN echo 'export JAVA_OPTS="-Xmx4G"' >> $CATALINA_HOME/bin/setenv.sh
 
-RUN curl -O --output-dir $CATALINA_HOME/webapps "https://github.com/bis-medit-sdmxio/fmr/releases/download/v${FMR_VERSION}/fmr-${FMR_VERSION}.war"
+RUN curl -LO --output-dir $CATALINA_HOME/webapps --variable '%FMR_VERSION' --expand-url "https://github.com/bis-medit-sdmxio/fmr/releases/download/v{{FMR_VERSION}}/fmr-{{FMR_VERSION}}.war"
